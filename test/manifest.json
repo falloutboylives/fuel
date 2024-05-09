@@ -1,0 +1,15 @@
+{
+  "name": "test",
+  "description": "Testing package for FUEL",
+  "version": "1.0.0",
+  "type": "module",
+  "entryPoint": "index.html",
+  "packageExtensions": [],
+  "globalExtensions" : [],
+  "files": [
+    "index.html",
+    "styles/hello.css",
+    "scripts/hello.js",
+    "media/hello-fuel.png"
+  ]
+}
