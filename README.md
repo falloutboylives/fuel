@@ -1,51 +1,44 @@
-# README for FUEL
+# FUEL
 
-This is the engine which will run FUEL packages.
-It will run on node 18+.
-It requires a local browser to handle its UI.
+This is a design for a portable app package. The default implementation is based on existing widely distributed apps, to avoid folks having to trust yet another executable. The FUEL definitions rely on other existing definitions and standards (e.g. HTML 5.1).
 
-## Overview
+The core principles behind FUEL are:
 
-This is captured better elsewhere, but this engine is a combination of:
-- local web server
-- global extension framework to allow for non-browser APIs
-- package extension framework to allow for dynamic content
-- packaging framework for bundling web content and extensions
+1. A package encapsulates a functional app that runs on the engine
+2. The engine and the packages are platform agnostic
+3. It uses the web platform for it's user interface (HTML, CSS, Javascript)
 
-The goal is too allow for portable applications built using web technologies that can use functionality beyond what the browser normally provides.
+Although this package could be extended to support non-portable (e.g. binary) executables that is not a goal.
 
-The engine code is all Javascript running on Node.
-The extensions are all launched from Javascript running on Node.
-The web content is run by launching in the local browser of your choice.
+(TBD) FUEL is an acronym for Friendly Universal Executable Library.
 
-## Installation
+## Compliance
 
-Ultimately I will want to "install" this for the best user experience.
-This wil involve:
-- generating my cert chain
-- installing my root cert
-- creating a folder for installed packages
-- ensuring proper rights are enabled for package folders
-- updating the HOSTS file?
+A FUEL compliant engine implementation will include:
 
-## Packaging
+- Javascript engine (e.g. node)
+- user interface engine (e.g. browser)
+- package runner (e.g. fuel-engine/fuel.js)
 
-This should be super simple.
+These can be integrated into a single executable or exist separately.
 
-You simply give the packager:
-- a folder containing web content (e.g. /my-web-app/*)
-- the initial entry point for the web content (e.g. /my-web-app/index.html)
+These behaviors are required for a compliant FUEL implementation.
 
-The packager should do the rest (with a little prompting)
-- figuring out what files go in the package
-- creating the manifest
-- figuring out adminstrative details (who is the author, what is the license)
-- zipping, signing, and possibly encrypting the package
+- Support package extraction as described in [FUEL Package Layout](./docs/fuel-package-layout.md)
+- Support package verification as described in [FUEL Package Signature](./docs/fuel-package-signature.md)
+- Support all manifest fields described in [FUEL Package Manifest](./docs/fuel-package-manifest.md)
+- Support the service interface described in [FUEL Service Interface](./docs/fuel-service-interface.md)
+- Support the application interface described in [FUEL Application Interface](./docs/main/fuel-application-interface.md)
+- Support the order of operations described in [FUEL Operation](./docs/fuel-operation.md)
 
-## Running
+### Optional support
 
-You will generally follow on of these paths:
-- Given a package you downloaded, run it as a guest. This will limit the extensions it can use and is temporary.
-- Given a package you downloaded, install it to your machine. This gives access to all extensions.
-- Run an existing installed package.
+An engine might also support the following:
 
+- Engine configuration
+- Installing packages
+- Running installed packages
+
+## References
+
+- I am attempting to follow the [Google conventions for Javascript](https://google.github.io/styleguide/jsguide.html)

@@ -1,0 +1,8 @@
+{
+    "name": "app",
+    "description": "A sample application",
+    "version": "1.0",
+    "port": 9000,
+    "interface": "app/app.js",
+    "visibility": "public"
+}
